@@ -18,7 +18,7 @@ Test the app using the credentials below or sign up with your own.
 - [🧰 Tech Stack](#-tech-stack)
 - [🛠️ Local Setup Steps](#️-local-setup-steps)
 - [⚙️ Supabase Setup](#️-supabase-setup)
-- [🧾 Environment Variable Configuration](#️-environment-variable-configuration)
+- [🧾 Environment Variable Configuration](#️environment-variable-configuration)
 - [🧬 Push Prisma Schema](#️-push-prisma-schema)
 - [🎨 Install Shadcn UI (Optional)](#️-install-shadcn-ui-optional)
 - [🚀 SST Deployment on AWS](#️-sst-deployment-on-aws)
