@@ -1,137 +1,217 @@
 # Manox
 
-Manox is a lightweight task management and team collaboration tool built with the T3 Stack, SST (Serverless Stack), and Supabase.
+**Manox** is a lightweight task management and team collaboration tool built with the **T3 Stack**, **SST (Serverless Stack)**, and **Supabase**.
 
-## Test the app using the below credentials or use your own.
-- https://d11xdryd8jvubz.cloudfront.net/
-- email: test@gmail.com
-- password: 123456789
+## 🧪 Try the App
 
-## Table of Contents
+Test the app using the credentials below or sign up with your own.
 
-- [Project Architecture](#project-architecture)
-- [Tech Stack](#tech-stack)
-- [Local Setup Steps](#local-setup-steps)
-- [Environment Variable Configuration](#environment-variable-configuration)
-- [Supabase Setup](#supabase-setup)
-- [SST Deployment on AWS](#sst-deployment-on-aws)
-- [Running and Testing Locally](#running-and-testing-locally)
-- [Running Unit Tests](#running-unit-tests)
+* **Live URL**: [https://d11xdryd8jvubz.cloudfront.net/](https://d11xdryd8jvubz.cloudfront.net/)
+* **Email**: `test@gmail.com`
+* **Password**: `123456789`
 
-## Project Architecture
+---
 
-The application follows the T3 Stack architecture, with a Next.js frontend (App Router) and a tRPC API layer. The backend leverages SST for serverless deployment on AWS Lambda, and Supabase (PostgreSQL) serves as the database.
+## 📚 Table of Contents
 
--   **Frontend**: Next.js (App Router), Tailwind CSS, Shadcn/UI, Lucide-react
-    -   `src/app` for pages and layouts.
-    -   `src/components` for UI components.
-    -   `src/trpc/react.tsx` for tRPC client integration.
--   **API**: tRPC
-    -   `src/server/api/routers` for tRPC router definitions.
-    -   `src/server/api/trpc.ts` for tRPC server setup.
-    -   API routes served via Next.js API routes (`src/app/api/`).
--   **Authentication**: NextAuth.js with Supabase for Email/Password authentication.
-    -   `src/server/auth.ts` for NextAuth configuration.
--   **Database**: Supabase (PostgreSQL) with Prisma ORM.
-    -   `prisma/schema.prisma` for database schema.
-    -   `src/server/db.ts` for Prisma client instance.
--   **Deployment**: SST (Serverless Stack)
-    -   `sst.config.ts` for SST deployment configuration.
-    -   Deploys the Next.js application (including API routes) to AWS Lambda and API Gateway.
+* [Project Architecture](#project-architecture)
+* [Tech Stack](#tech-stack)
+* [Local Setup Steps](#local-setup-steps)
+* [Environment Variable Configuration](#environment-variable-configuration)
+* [Supabase Setup](#supabase-setup)
+* [SST Deployment on AWS](#sst-deployment-on-aws)
+* [Running and Testing Locally](#running-and-testing-locally)
+* [Running Unit Tests](#running-unit-tests)
 
-## Tech Stack
+---
 
-| Layer                 | Technology                               |
-| --------------------- | ---------------------------------------- |
-| Framework             | Next.js (with App Router)                |
-| Language              | TypeScript                               |
-| Styling               | Tailwind CSS (Dark Theme)                |
-| UI Components         | Shadcn/UI                                |
-| Icons                 | Lucide-react                             |
-| Authentication        | NextAuth.js (Email/Password via Supabase)|
-| API Layer             | tRPC                                     |
-| ORM                   | Prisma                                   |
-| Database              | Supabase (PostgreSQL)                    |
-| Backend Infrastructure| SST (Serverless Stack on AWS)            |
-| Hosting (Backend)     | AWS Lambda via SST                       |
-| Hosting (Frontend)    | AWS CloudFront via SST (or Vercel)       |
-| Unit Testing          | Vitest                                   |
+## 🏗️ Project Architecture
 
-## Local Setup Steps
+The application uses the T3 Stack:
 
-1.  **Clone the app:**
-    Clone this repository.*
+* **Frontend**: Next.js (App Router), Tailwind CSS, Shadcn/UI, Lucide-react
 
-2.  **Install Dependencies:**
-    ```
-    pnpm install 
-    # or npm install / yarn install
-    ```
+  * `src/app` – Pages and layouts
+  * `src/components` – UI components
+  * `src/trpc/react.tsx` – tRPC client integration
 
-3.  **Set up Supabase:** (See [Supabase Setup](#supabase-setup) section below)
+* **API Layer**: tRPC
 
-### Create a Supabase Project
+  * `src/server/api/routers` – Router definitions
+  * `src/server/api/trpc.ts` – Server setup
+  * Served via Next.js API routes: `src/app/api/`
 
-- Go to Supabase Dashboard and create a new project.
-- Choose a strong password for your database. Save it securely.
+* **Authentication**: NextAuth.js (with Supabase)
 
-### Get Database Connection String
+  * `src/server/auth.ts` – NextAuth config
 
-- In your Supabase project dashboard, go to **Project Settings > Database**.
-- Under **Connection string**, select the **URI** tab.
-- Copy the URI and replace `[YOUR-PASSWORD]` with the database password you set. This is your `DATABASE_URL`.
+* **Database**: Supabase (PostgreSQL) + Prisma
 
-### Get Supabase URL and Anon Key
+  * `prisma/schema.prisma` – DB schema
+  * `src/server/db.ts` – Prisma client instance
 
-- Go to **Project Settings > API**.
-- Copy the **Project URL**. This is your `NEXT_PUBLIC_SUPABASE_URL`.
-- Copy the **Project API key** (the public anon key). This is your `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-- copy it from the same API settings page. This would be `SUPABASE_SERVICE_ROLE_KEY`.
+* **Deployment**: SST (Serverless Stack)
 
-### Enable Email/Password Authentication Provider
+  * `sst.config.ts` – SST configuration
+  * Deploys app to AWS Lambda + API Gateway
 
-- In your Supabase project dashboard, go to **Authentication > Providers**.
-- Enable the **Email** provider. You can configure options like "Confirm email" if desired. For this setup, "Confirm email" is assumed to be off for simplicity, but it's recommended for production.
+---
 
-## Database Schema
+## 🧰 Tech Stack
 
-- The Prisma schema (`prisma/schema.prisma`) defines the tables for users, projects, tasks, etc.
-- Run `npm run db:push` to create these tables in your Supabase database after configuring your `.env` file.
-- Supabase's `auth.users` table will be used by Supabase for authentication.
+| Layer                  | Technology                         |
+| ---------------------- | ---------------------------------- |
+| Framework              | Next.js (App Router)               |
+| Language               | TypeScript                         |
+| Styling                | Tailwind CSS (Dark Theme)          |
+| UI Components          | Shadcn/UI                          |
+| Icons                  | Lucide-react                       |
+| Authentication         | NextAuth.js (via Supabase)         |
+| API Layer              | tRPC                               |
+| ORM                    | Prisma                             |
+| Database               | Supabase (PostgreSQL)              |
+| Backend Infrastructure | SST (AWS Lambda & API Gateway)     |
+| Hosting (Backend)      | AWS Lambda via SST                 |
+| Hosting (Frontend)     | AWS CloudFront via SST (or Vercel) |
+| Unit Testing           | Vitest                             |
 
+---
 
-4.  **Environment Variable Configuration**
-    Create a `.env` file in the root of the project and add the following variables:
+## 🛠️ Local Setup Steps
 
-    Copy `.env.example` to `.env` and fill in the required values.
+### 1. Clone the Repository
 
-### Prisma & Supabase Database
-DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-SUPABASE-PROJECT-ID].supabase.co:5432/postgres"
+```bash
+git clone https://github.com/Mandeepsinghmar/project-management-app.git
+cd manox
+```
 
-### NextAuth.js
-NEXTAUTH_SECRET="generate-a-strong-secret-here" # Use: openssl rand -base64 32
-NEXTAUTH_URL="http://localhost:3000" # For production, set to your deployed app's URL
+### 2. Install Dependencies
 
-### Supabase Client
-NEXT_PUBLIC_SUPABASE_URL="https://[YOUR-SUPABASE-PROJECT-ID].supabase.co"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="[YOUR-SUPABASE-ANON-KEY]"
-# SUPABASE_SERVICE_ROLE_KEY="[YOUR-SUPABASE-SERVICE-ROLE-KEY]" 
+```bash
+pnpm install
+# or
+npm install
+# or
+yarn install
+```
 
+### 3. Set Up Supabase
 
-5.  **Push Prisma Schema to Supabase:**
-    Ensure your `DATABASE_URL` in `.env` is correctly pointing to your Supabase PostgreSQL database.
-    ```bash
-       npx prisma db push
-    ```
+See [Supabase Setup](#supabase-setup) below for detailed steps.
 
-6.  **Install Shadcn UI Components (if not already present by cloning):**
-    ```bash
-    pnpm dlx shadcn-ui@latest init 
-    # Follow prompts (e.g., new-york style, base color, globals.css path: src/app/globals.css, tailwind.config.js path, etc.)
-    # Then add components as needed:
-    npx shadcn@latest add button card input dialog select avatar dropdown-menu label textarea popover date-picker checkbox command
-    ```
+---
 
+## ⚙️ Supabase Setup
 
+### Create a Project
 
+* Go to [Supabase Dashboard](https://app.supabase.com/) and create a new project.
+* Set a strong password and save it securely.
+
+### Get Connection String
+
+* Navigate to **Project Settings > Database**
+* Copy the **URI** under the **Connection string** tab.
+* Replace `[YOUR-PASSWORD]` in the URI with your database password → use as `DATABASE_URL`.
+
+### Get Supabase URL & Keys
+
+* Go to **Project Settings > API**:
+
+  * Copy the **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
+  * Copy the **Anon key** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  * Copy the **Service Role Key** (same page) → `SUPABASE_SERVICE_ROLE_KEY`
+
+### Enable Email/Password Auth
+
+* Go to **Authentication > Providers**
+* Enable **Email** provider
+  (Disable email confirmation for development, but recommended to enable for production)
+
+---
+
+## 🧾 Environment Variable Configuration
+
+Create a `.env` file in the root directory:
+
+```bash
+cp .env.example .env
+```
+
+### Fill in the following:
+
+```env
+# Prisma / Supabase
+DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-ID].supabase.co:5432/postgres"
+
+# NextAuth.js
+NEXTAUTH_SECRET="your-secret" # use: openssl rand -base64 32
+NEXTAUTH_URL="http://localhost:3000"
+
+# Supabase Client
+NEXT_PUBLIC_SUPABASE_URL="https://[PROJECT-ID].supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="[YOUR-ANON-KEY]"
+SUPABASE_SERVICE_ROLE_KEY="[YOUR-SERVICE-ROLE-KEY]"
+```
+
+---
+
+## 🧬 Push Prisma Schema
+
+Ensure `DATABASE_URL` is correct, then run:
+
+```bash
+npx prisma db push
+```
+
+---
+
+## 🎨 Install Shadcn UI (Optional)
+
+If UI components are missing:
+
+```bash
+pnpm dlx shadcn-ui@latest init
+# Follow prompts:
+# - Style: new-york
+# - globals.css path: src/app/globals.css
+# - Tailwind config: tailwind.config.ts
+
+npx shadcn@latest add button card input dialog select avatar dropdown-menu label textarea popover date-picker checkbox command
+```
+
+---
+
+## 🚀 SST Deployment on AWS
+
+Make sure AWS CLI is configured. Then:
+
+```bash
+pnpm sst deploy
+```
+
+This will deploy your Next.js app (API + frontend) to AWS via Lambda & CloudFront.
+
+---
+
+## 🧪 Running and Testing Locally
+
+```bash
+pnpm dev
+# or
+npm run dev
+```
+
+Visit `http://localhost:3000`
+
+---
+
+## ✅ Running Unit Tests
+
+```bash
+pnpm test
+# or
+npm run test
+```
 
