@@ -14,16 +14,16 @@ Test the app using the credentials below or sign up with your own.
 
 ## 📚 Table of Contents
 
-* [Project Architecture](#🏠-project-architecture)
-* [Tech Stack](#🛠%ef%b8%8f-tech-stack)
-* [Local Setup Steps](#🛠%ef%b8%8f-local-setup-steps)
-* [Supabase Setup](#⚙%ef%b8%8f-supabase-setup)
-* [Environment Variable Configuration](#📜-environment-variable-configuration)
-* [Push Prisma Schema](#🧬-push-prisma-schema)
-* [Install Shadcn UI (Optional)](#🎨-install-shadcn-ui-optional)
-* [SST Deployment on AWS](#🚀-sst-deployment-on-aws)
-* [Running and Testing Locally](#🔪-running-and-testing-locally)
-* [Running Unit Tests](#✅-running-unit-tests)
+- [🏗️ Project Architecture](#️-project-architecture)
+- [🧰 Tech Stack](#-tech-stack)
+- [🛠️ Local Setup Steps](#️-local-setup-steps)
+- [⚙️ Supabase Setup](#️-supabase-setup)
+- [🧾 Environment Variable Configuration](#️-environment-variable-configuration)
+- [🧬 Push Prisma Schema](#️-push-prisma-schema)
+- [🎨 Install Shadcn UI (Optional)](#️-install-shadcn-ui-optional)
+- [🚀 SST Deployment on AWS](#️-sst-deployment-on-aws)
+- [🧪 Running and Testing Locally](#️-running-and-testing-locally)
+- [✅ Running Unit Tests](#️-running-unit-tests)
 
 ---
 
@@ -85,7 +85,7 @@ The application uses the T3 Stack:
 
 ```bash
 git clone https://github.com/Mandeepsinghmar/project-management-app.git
-cd manox
+cd project-management-app
 ```
 
 ### Install Dependencies
