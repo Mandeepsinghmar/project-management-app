@@ -70,25 +70,25 @@ The application follows the T3 Stack architecture, with a Next.js frontend (App 
 
 3.  **Set up Supabase:** (See [Supabase Setup](#supabase-setup) section below)
 
-## Create a Supabase Project
+### Create a Supabase Project
 
 - Go to Supabase Dashboard and create a new project.
 - Choose a strong password for your database. Save it securely.
 
-## Get Database Connection String
+### Get Database Connection String
 
 - In your Supabase project dashboard, go to **Project Settings > Database**.
 - Under **Connection string**, select the **URI** tab.
 - Copy the URI and replace `[YOUR-PASSWORD]` with the database password you set. This is your `DATABASE_URL`.
 
-## Get Supabase URL and Anon Key
+### Get Supabase URL and Anon Key
 
 - Go to **Project Settings > API**.
 - Copy the **Project URL**. This is your `NEXT_PUBLIC_SUPABASE_URL`.
 - Copy the **Project API key** (the public anon key). This is your `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 - copy it from the same API settings page. This would be `SUPABASE_SERVICE_ROLE_KEY`.
 
-## Enable Email/Password Authentication Provider
+### Enable Email/Password Authentication Provider
 
 - In your Supabase project dashboard, go to **Authentication > Providers**.
 - Enable the **Email** provider. You can configure options like "Confirm email" if desired. For this setup, "Confirm email" is assumed to be off for simplicity, but it's recommended for production.
@@ -100,19 +100,19 @@ The application follows the T3 Stack architecture, with a Next.js frontend (App 
 - Supabase's `auth.users` table will be used by Supabase for authentication.
 
 
-4.  **Configure Environment Variables:**
+4.  **Environment Variable Configuration**
     Create a `.env` file in the root of the project and add the following variables:
 
     Copy `.env.example` to `.env` and fill in the required values.
 
-# Prisma & Supabase Database
+### Prisma & Supabase Database
 DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-SUPABASE-PROJECT-ID].supabase.co:5432/postgres"
 
-# NextAuth.js
+### NextAuth.js
 NEXTAUTH_SECRET="generate-a-strong-secret-here" # Use: openssl rand -base64 32
 NEXTAUTH_URL="http://localhost:3000" # For production, set to your deployed app's URL
 
-# Supabase Client
+### Supabase Client
 NEXT_PUBLIC_SUPABASE_URL="https://[YOUR-SUPABASE-PROJECT-ID].supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY="[YOUR-SUPABASE-ANON-KEY]"
 # SUPABASE_SERVICE_ROLE_KEY="[YOUR-SUPABASE-SERVICE-ROLE-KEY]" 
