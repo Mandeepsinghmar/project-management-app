@@ -14,20 +14,20 @@ Test the app using the credentials below or sign up with your own.
 
 ## 📚 Table of Contents
 
-- [🏗️ Project Architecture](#️-project-architecture)
-- [🧰 Tech Stack](#-tech-stack)
-- [🛠️ Local Setup Steps](#️-local-setup-steps)
-- [⚙️ Supabase Setup](#️-supabase-setup)
-- [🧾 Environment Variable Configuration](#️environment-variable-configuration)
-- [🧬 Push Prisma Schema](#️-push-prisma-schema)
-- [🎨 Install Shadcn UI (Optional)](#️-install-shadcn-ui-optional)
-- [🚀 SST Deployment on AWS](#️-sst-deployment-on-aws)
-- [🧪 Running and Testing Locally](#️-running-and-testing-locally)
-- [✅ Running Unit Tests](#️-running-unit-tests)
+- [Project Architecture](#project-architecture)
+- [Tech Stack](#tech-stack)
+- [Local Setup Steps](#local-setup-steps)
+- [Supabase Setup](#supabase-setup)
+- [Environment Variable Configuration](#environment-variable-configuration)
+- [Push Prisma Schema](#push-prisma-schema)
+- [Install Shadcn UI (Optional)](#install-shadcn-ui-optional)
+- [SST Deployment on AWS](#sst-deployment-on-aws)
+- [Running and Testing Locally](#running-and-testing-locally)
+- [Running Unit Tests](#running-unit-tests)
 
 ---
 
-## 🏠 Project Architecture
+## Project Architecture
 
 The application uses the T3 Stack:
 
@@ -59,7 +59,7 @@ The application uses the T3 Stack:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer                  | Technology                         |
 | ---------------------- | ---------------------------------- |
@@ -79,7 +79,7 @@ The application uses the T3 Stack:
 
 ---
 
-## 🛠️ Local Setup Steps
+## Local Setup Steps
 
 ### Clone the Repository
 
@@ -104,7 +104,7 @@ See [Supabase Setup](#⚙%ef%b8%8f-supabase-setup) below for detailed steps.
 
 ---
 
-## ⚙️ Supabase Setup
+## Supabase Setup
 
 ### Create a Project
 
@@ -159,7 +159,7 @@ SUPABASE_SERVICE_ROLE_KEY="[YOUR-SERVICE-ROLE-KEY]"
 
 ---
 
-## 🧬 Push Prisma Schema
+## Push Prisma Schema
 
 Ensure `DATABASE_URL` is correct, then run:
 
@@ -169,7 +169,7 @@ npx prisma db push
 
 ---
 
-## 🎨 Install Shadcn UI (Optional)
+## Install Shadcn UI (Optional)
 
 If UI components are missing:
 
@@ -185,7 +185,7 @@ npx shadcn@latest add button card input dialog select avatar dropdown-menu label
 
 ---
 
-## 🚀 SST Deployment on AWS
+## SST Deployment on AWS
 
 Make sure AWS CLI is configured. Then:
 
@@ -197,7 +197,7 @@ This will deploy your Next.js app (API + frontend) to AWS via Lambda & CloudFron
 
 ---
 
-## 🔪 Running and Testing Locally
+## Running and Testing Locally
 
 ```bash
 pnpm dev
@@ -209,7 +209,7 @@ Visit `http://localhost:3000`
 
 ---
 
-## ✅ Running Unit Tests
+## Running Unit Tests
 
 ```bash
 pnpm test
