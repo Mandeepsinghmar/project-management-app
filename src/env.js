@@ -1,3 +1,13 @@
+console.log('[ENV_JS] process.env.NODE_ENV:', process.env.NODE_ENV);
+console.log(
+  '[ENV_JS] Attempting to load NEXT_PUBLIC_SUPABASE_URL:',
+  process.env.NEXT_PUBLIC_SUPABASE_URL
+);
+console.log(
+  '[ENV_JS] Attempting to load NEXT_PUBLIC_SUPABASE_ANON_KEY:',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
+
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
@@ -21,7 +31,7 @@ export const env = createEnv({
       (str) => process.env.VERCEL_URL ?? str,
       process.env.VERCEL ? z.string() : z.string().url()
     ),
-    SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
+    SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
   },
 
   client: {
@@ -39,7 +49,9 @@ export const env = createEnv({
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
   },
 
-  skipValidation: !!process.env.SKIP_ENV_VALIDATION,
-
   emptyStringAsUndefined: true,
+  skipValidation:
+    !!process.env.SKIP_ENV_VALIDATION || // General skip flag
+    process.env.npm_lifecycle_event === 'lint' || // Skip for linting
+    process.env.NODE_ENV === 'test',
 });

@@ -6,14 +6,9 @@ import {
 } from '~/server/api/trpc';
 import { updateUserProfileSchema, signUpSchema } from '~/lib/validators';
 import { TRPCError } from '@trpc/server';
-import { createClient } from '@supabase/supabase-js';
-import { env } from '~/env';
-import { db } from '~/server/db';
 
-const supabaseAdminClient = createClient(
-  env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { db } from '~/server/db';
+import { supabaseAdmin } from '~/lib/supabaseAdmin';
 
 export const userRouter = createTRPCRouter({
   getProfile: protectedProcedure.query(async ({ ctx }) => {
@@ -103,7 +98,7 @@ export const userRouter = createTRPCRouter({
     const { email, password, name } = input;
 
     const { data: supabaseUserData, error: supabaseError } =
-      await supabaseAdminClient.auth.signUp({
+      await supabaseAdmin.auth.signUp({
         email,
         password,
         options: {
@@ -181,10 +176,9 @@ export const userRouter = createTRPCRouter({
         });
       }
 
-      const { error: deleteError } =
-        await supabaseAdminClient.auth.admin.deleteUser(
-          supabaseUserData.user.id
-        );
+      const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(
+        supabaseUserData.user.id
+      );
       if (deleteError) {
         console.error(
           `CRITICAL: Failed to rollback Supabase user ${supabaseUserData.user.id} after Prisma failure:`,
