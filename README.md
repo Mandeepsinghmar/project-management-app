@@ -2,7 +2,7 @@
 
 Manox is a lightweight task management and team collaboration tool built with the T3 Stack, SST (Serverless Stack), and Supabase.
 
-## Test the app by using the below credentials or use your own.
+## Test the app using the below credentials or use your own.
 - https://d11xdryd8jvubz.cloudfront.net/
 - email: test@gmail.com
 - password: 123456789
