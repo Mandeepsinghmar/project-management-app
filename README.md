@@ -133,7 +133,7 @@ See [Supabase Setup](#⚙%ef%b8%8f-supabase-setup) below for detailed steps.
 
 ---
 
-## 📜 Environment Variable Configuration
+## Environment Variable Configuration
 
 Create a `.env` file in the root directory:
 
