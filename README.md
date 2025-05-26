@@ -14,18 +14,20 @@ Test the app using the credentials below or sign up with your own.
 
 ## 📚 Table of Contents
 
-* [Project Architecture](#project-architecture)
-* [Tech Stack](#tech-stack)
-* [Local Setup Steps](#local-setup-steps)
-* [Environment Variable Configuration](#environment-variable-configuration)
-* [Supabase Setup](#supabase-setup)
-* [SST Deployment on AWS](#sst-deployment-on-aws)
-* [Running and Testing Locally](#running-and-testing-locally)
-* [Running Unit Tests](#running-unit-tests)
+* [Project Architecture](#🏠-project-architecture)
+* [Tech Stack](#🛠%ef%b8%8f-tech-stack)
+* [Local Setup Steps](#🛠%ef%b8%8f-local-setup-steps)
+* [Supabase Setup](#⚙%ef%b8%8f-supabase-setup)
+* [Environment Variable Configuration](#📜-environment-variable-configuration)
+* [Push Prisma Schema](#🧬-push-prisma-schema)
+* [Install Shadcn UI (Optional)](#🎨-install-shadcn-ui-optional)
+* [SST Deployment on AWS](#🚀-sst-deployment-on-aws)
+* [Running and Testing Locally](#🔪-running-and-testing-locally)
+* [Running Unit Tests](#✅-running-unit-tests)
 
 ---
 
-## 🏗️ Project Architecture
+## 🏠 Project Architecture
 
 The application uses the T3 Stack:
 
@@ -57,7 +59,7 @@ The application uses the T3 Stack:
 
 ---
 
-## 🧰 Tech Stack
+## 🛠️ Tech Stack
 
 | Layer                  | Technology                         |
 | ---------------------- | ---------------------------------- |
@@ -79,14 +81,14 @@ The application uses the T3 Stack:
 
 ## 🛠️ Local Setup Steps
 
-### 1. Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/Mandeepsinghmar/project-management-app.git
 cd manox
 ```
 
-### 2. Install Dependencies
+### Install Dependencies
 
 ```bash
 pnpm install
@@ -96,9 +98,9 @@ npm install
 yarn install
 ```
 
-### 3. Set Up Supabase
+### Set Up Supabase
 
-See [Supabase Setup](#supabase-setup) below for detailed steps.
+See [Supabase Setup](#⚙%ef%b8%8f-supabase-setup) below for detailed steps.
 
 ---
 
@@ -131,7 +133,7 @@ See [Supabase Setup](#supabase-setup) below for detailed steps.
 
 ---
 
-## 🧾 Environment Variable Configuration
+## 📜 Environment Variable Configuration
 
 Create a `.env` file in the root directory:
 
@@ -195,7 +197,7 @@ This will deploy your Next.js app (API + frontend) to AWS via Lambda & CloudFron
 
 ---
 
-## 🧪 Running and Testing Locally
+## 🔪 Running and Testing Locally
 
 ```bash
 pnpm dev
@@ -214,4 +216,3 @@ pnpm test
 # or
 npm run test
 ```
-
