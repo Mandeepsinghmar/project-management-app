@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from '@trpc/server';
 import { type Session, getServerSession } from 'next-auth';
-import superjson from 'superjson';
+import * as superjson from 'superjson';
 import { ZodError } from 'zod';
 
 import { authOptions } from '~/server/auth';

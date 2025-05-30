@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
@@ -39,19 +39,19 @@ model Session {
 }
 
 model User {
-  id              String    @id @default(uuid())
-  name            String?
-  email           String?   @unique
-  emailVerified   DateTime?
-  image           String?   @map("profile_picture")
-  createdAt       DateTime  @default(now()) @map("created_at")
-  updatedAt       DateTime  @updatedAt
+  id            String    @id @default(uuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?   @map("profile_picture")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt
 
   accounts        Account[]
   sessions        Session[]
-  createdProjects Project[] @relation("CreatedBy")
-   tasksAssignedTo TaskUser[] 
-  projectUsers    ProjectUser[] 
+  createdProjects Project[]     @relation("CreatedBy")
+  tasksAssignedTo TaskUser[]
+  projectUsers    ProjectUser[]
 }
 
 model VerificationToken {
@@ -63,27 +63,27 @@ model VerificationToken {
 }
 
 model Project {
-  id          String    @id @default(uuid())
+  id          String   @id @default(uuid())
   title       String
   description String?
   createdById String
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt
 
-  createdBy   User          @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
-  tasks       Task[]
-  projectUsers ProjectUser[] 
+  createdBy    User          @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
+  tasks        Task[]
+  projectUsers ProjectUser[]
 
   @@index([createdById])
 }
 
 model ProjectUser {
-  projectId String
-  userId    String
+  projectId  String
+  userId     String
   assignedAt DateTime @default(now())
 
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([projectId, userId])
   @@index([projectId])
@@ -103,19 +103,19 @@ enum TaskPriority {
 }
 
 model Task {
-  id           String        @id @default(uuid())
-  title        String
-  description  String?
-  status       TaskStatus    @default(TODO)
-  priority     TaskPriority  @default(MEDIUM)
-  dueDate      DateTime?     @map("due_date")
-  projectId    String?       
-  createdAt    DateTime      @default(now()) @map("created_at")
-  updatedAt    DateTime      @updatedAt
+  id          String       @id @default(uuid())
+  title       String
+  description String?
+  status      TaskStatus   @default(TODO)
+  priority    TaskPriority @default(MEDIUM)
+  dueDate     DateTime?    @map("due_date")
+  projectId   String?
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt
 
-  project    Project?      @relation(fields: [projectId], references: [id], onDelete: Cascade) 
-  tags       TaskTag[]
-  assignees  TaskUser[]    
+  project   Project?   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tags      TaskTag[]
+  assignees TaskUser[]
 
   @@index([projectId])
 }
@@ -135,7 +135,7 @@ model TaskUser {
 model Tag {
   id        String    @id @default(uuid())
   name      String    @unique
-  colorCode String?   @map("color_code") 
+  colorCode String?   @map("color_code")
   tasks     TaskTag[]
 }
 

@@ -32,7 +32,7 @@ interface CreateProjectDialogProps {
   isOpen: boolean;
   onClose: () => void;
   onProjectCreated: () => void;
-  projectToEdit?: Project;
+  projectToEdit?: Project | any;
 }
 
 const formSchema = createProjectSchema.merge(

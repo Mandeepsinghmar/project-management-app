@@ -28,9 +28,9 @@ import {
 import { type Task, type Project, type Tag, type User } from '@prisma/client';
 
 type FullTask = Task & {
-  project: Pick<Project, 'id' | 'title'>;
-  assignedTo?: Pick<User, 'id' | 'name' | 'image'> | null;
+  assignees: { user: User }[];
   tags: { tag: Tag }[];
+  project?: Project | null;
 };
 
 export function MyTasksSummaryCard() {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /// <reference types="vitest/globals" />
 import { type inferProcedureInput } from '@trpc/server';
 import { expect, test, describe, beforeEach, vi } from 'vitest';

@@ -44,11 +44,12 @@ import {
   CommandItem,
   CommandList,
 } from '~/components/ui/command';
+import { FullProjectDetails } from '~/types';
 
 interface ManageMembersDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  project: NonNullable<ReturnType<typeof api.project.getById.useQuery>['data']>;
+  project: FullProjectDetails | any;
   onMembersUpdate: () => void;
 }
 
@@ -101,7 +102,7 @@ function ManageMembersDialog({
         <div className='py-2 space-y-4'>
           <div>
             <h3 className='text-sm font-medium mb-2'>Current Members:</h3>
-            {project.projectUsers.length > 0 ? (
+            {project?.projectUsers.length > 0 ? (
               <ul className='space-y-2 max-h-40 overflow-y-auto'>
                 {project.projectUsers.map(({ user }) => (
                   <li

@@ -200,18 +200,11 @@ export const userRouter = createTRPCRouter({
 
   getDashboardStats: protectedProcedure.query(async ({ ctx }) => {
     const userId = ctx.session.user.id;
-    console.log(
-      `BACKEND (getDashboardStats): Fetching stats for user ID: ${userId}`
-    );
 
     const anyDoneTasks = await db.task.count({ where: { status: 'DONE' } });
-    console.log(`BACKEND: Any DONE tasks at all: ${anyDoneTasks}`);
     const tasksForThisUser = await db.task.count({
       where: { assignees: { some: { userId: userId } } },
     });
-    console.log(
-      `BACKEND: Tasks assigned to user ${userId} (any status): ${tasksForThisUser}`
-    );
 
     const completedTasksCount = await db.task.count({
       where: {
@@ -223,10 +216,6 @@ export const userRouter = createTRPCRouter({
         },
       },
     });
-
-    console.log(
-      `BACKEND (getDashboardStats): Prisma db.task.count returned: ${completedTasksCount}`
-    );
 
     const projectsUserIsIn = await db.project.findMany({
       where: {

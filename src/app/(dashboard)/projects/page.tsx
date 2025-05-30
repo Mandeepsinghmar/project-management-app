@@ -11,12 +11,7 @@ import { PlusCircle, Loader2, LayoutGrid } from 'lucide-react';
 
 export default function ProjectsPage() {
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
-  const {
-    data: projectsData,
-    isLoading,
-    refetch,
-  } = api.project.getAll.useQuery();
-  const projects: FullProject[] | undefined = projectsData;
+  const { data: projects, isLoading, refetch } = api.project.getAll.useQuery();
 
   return (
     <div className='space-y-6'>

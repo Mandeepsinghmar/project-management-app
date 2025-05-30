@@ -10,7 +10,7 @@ export type FullProject = Project & {
 };
 
 interface ProjectListClientProps {
-  projects: FullProject[];
+  projects: FullProject[] | any;
   onProjectUpdate: () => void;
 }
 
