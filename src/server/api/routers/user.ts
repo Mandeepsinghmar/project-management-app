@@ -28,72 +28,6 @@ export const userRouter = createTRPCRouter({
     return user;
   }),
 
-  updateProfile: protectedProcedure
-    .input(updateUserProfileSchema)
-    .mutation(async ({ ctx, input }) => {
-      return ctx.db.user.update({
-        where: { id: ctx.session.user.id },
-        data: {
-          name: input.name,
-          image: input.image,
-        },
-      });
-    }),
-
-  searchUsers: protectedProcedure
-    .input(z.object({ query: z.string().min(1).optional() }))
-    .query(async ({ ctx, input }) => {
-      if (!input.query) return [];
-      return ctx.db.user.findMany({
-        where: {
-          OR: [
-            { name: { contains: input.query, mode: 'insensitive' } },
-            { email: { contains: input.query, mode: 'insensitive' } },
-          ],
-        },
-        select: { id: true, name: true, email: true, image: true },
-        take: 10,
-      });
-    }),
-
-  getMyTasks: protectedProcedure
-    .input(
-      z
-        .object({
-          status: z.enum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
-          sortBy: z
-            .enum(['dueDate', 'priority', 'createdAt'])
-            .optional()
-            .default('createdAt'),
-          sortOrder: z.enum(['asc', 'desc']).optional().default('desc'),
-        })
-        .optional()
-    )
-    .query(async ({ ctx, input }) => {
-      return ctx.db.task.findMany({
-        where: {
-          assignees: {
-            some: {
-              userId: ctx.session.user.id,
-            },
-          },
-          ...(input?.status && { status: input.status }),
-        },
-        include: {
-          project: { select: { id: true, title: true } },
-          tags: { include: { tag: true } },
-          assignees: {
-            include: {
-              user: { select: { id: true, name: true, image: true } },
-            },
-          },
-        },
-        orderBy: {
-          [input?.sortBy ?? 'createdAt']: input?.sortOrder ?? 'desc',
-        },
-      });
-    }),
-
   signUp: publicProcedure.input(signUpSchema).mutation(async ({ input }) => {
     const { email, password, name } = input;
 
@@ -197,6 +131,72 @@ export const userRouter = createTRPCRouter({
       });
     }
   }),
+
+  updateProfile: protectedProcedure
+    .input(updateUserProfileSchema)
+    .mutation(async ({ ctx, input }) => {
+      return ctx.db.user.update({
+        where: { id: ctx.session.user.id },
+        data: {
+          name: input.name,
+          image: input.image,
+        },
+      });
+    }),
+
+  searchUsers: protectedProcedure
+    .input(z.object({ query: z.string().min(1).optional() }))
+    .query(async ({ ctx, input }) => {
+      if (!input.query) return [];
+      return ctx.db.user.findMany({
+        where: {
+          OR: [
+            { name: { contains: input.query, mode: 'insensitive' } },
+            { email: { contains: input.query, mode: 'insensitive' } },
+          ],
+        },
+        select: { id: true, name: true, email: true, image: true },
+        take: 10,
+      });
+    }),
+
+  getMyTasks: protectedProcedure
+    .input(
+      z
+        .object({
+          status: z.enum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
+          sortBy: z
+            .enum(['dueDate', 'priority', 'createdAt'])
+            .optional()
+            .default('createdAt'),
+          sortOrder: z.enum(['asc', 'desc']).optional().default('desc'),
+        })
+        .optional()
+    )
+    .query(async ({ ctx, input }) => {
+      return ctx.db.task.findMany({
+        where: {
+          assignees: {
+            some: {
+              userId: ctx.session.user.id,
+            },
+          },
+          ...(input?.status && { status: input.status }),
+        },
+        include: {
+          project: { select: { id: true, title: true } },
+          tags: { include: { tag: true } },
+          assignees: {
+            include: {
+              user: { select: { id: true, name: true, image: true } },
+            },
+          },
+        },
+        orderBy: {
+          [input?.sortBy ?? 'createdAt']: input?.sortOrder ?? 'desc',
+        },
+      });
+    }),
 
   getDashboardStats: protectedProcedure.query(async ({ ctx }) => {
     const userId = ctx.session.user.id;
