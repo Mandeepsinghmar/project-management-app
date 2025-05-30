@@ -1,13 +1,3 @@
-console.log('[ENV_JS] process.env.NODE_ENV:', process.env.NODE_ENV);
-console.log(
-  '[ENV_JS] Attempting to load NEXT_PUBLIC_SUPABASE_URL:',
-  process.env.NEXT_PUBLIC_SUPABASE_URL
-);
-console.log(
-  '[ENV_JS] Attempting to load NEXT_PUBLIC_SUPABASE_ANON_KEY:',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
-
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
